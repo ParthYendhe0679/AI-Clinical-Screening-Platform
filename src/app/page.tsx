@@ -25,7 +25,7 @@ export default function Landing() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-10 pt-6 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:pb-12 lg:pt-8">
+        <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-10 pt-6 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:pb-16 lg:pt-8">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-white px-3 py-1.5 text-sm font-semibold shadow-pop"><span className="rounded-full bg-sun px-2 py-0.5 text-[10px] font-extrabold">NEW</span>Multimodal AI screening, watch it pick models</span>
             <h1 className="mt-4 text-[2.4rem] font-extrabold leading-[1.04] tracking-[-0.03em] sm:text-[3rem] lg:text-[3.4rem]">Your files.<br />One <span className="relative inline-block"><span className="relative z-10">clear</span><span className="absolute inset-x-0 bottom-1 z-0 h-4 -rotate-1 rounded-full bg-sun sm:h-6" aria-hidden /></span> report.<br />Not a diagnosis.</h1>
@@ -33,11 +33,6 @@ export default function Landing() {
               <Link href="/register" className={LinkButtonClass("primary", "lg")}>Get Started <ArrowRightIcon size={18} weight="bold" aria-hidden /></Link>
               <Link href="/demo" className={LinkButtonClass("outline", "lg")}>Explore Demo</Link>
             </div>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-3">
-              {[[FilesIcon, "mint", "Many file types, one case"], [GraphIcon, "lavender", "Right models, in order"], [ShieldCheckIcon, "sun", "Screening, never diagnosis"]].map(([I, tone, t]) => (
-                <li key={t as string} className="flex items-center gap-2 text-sm font-semibold"><ArtTile icon={I as React.ElementType} tone={tone as "mint"} size={36} />{t as string}</li>
-              ))}
-            </ul>
           </div>
           <HeroPreview />
         </section>
@@ -158,13 +153,13 @@ function HeroPreview() {
     [ScanIcon, "—", "Brain MRI model", "sky", "skipped · no MRI"],
   ];
   return (
-    <div className="relative mx-auto w-full max-w-md">
-      <span className="burst absolute -left-8 -top-6 z-20 grid h-24 w-24 -rotate-12 place-items-center bg-sun font-display text-base font-extrabold drop-shadow-[3px_3px_0_#1c1b2b]">ZAP!</span>
-      <span className="burst absolute -right-8 -top-8 z-20 grid h-28 w-28 rotate-12 place-items-center bg-coral font-display text-sm font-extrabold text-white drop-shadow-[3px_3px_0_#1c1b2b]">URGENT</span>
+    <div className="relative mx-auto mt-10 w-full max-w-md pb-20">
+      <span className="burst absolute -left-12 -top-10 z-20 grid h-20 w-20 -rotate-12 place-items-center bg-sun font-display text-base font-extrabold drop-shadow-[3px_3px_0_#1c1b2b]">ZAP!</span>
+      <span className="burst absolute -right-10 -top-10 z-20 grid h-24 w-24 rotate-12 text-xs place-items-center bg-coral font-display text-sm font-extrabold text-white drop-shadow-[3px_3px_0_#1c1b2b]">URGENT</span>
       <span className="absolute -right-3 top-24 -z-10 h-40 w-40 rounded-[40%] bg-lavender" aria-hidden />
       <div className="rounded-[36px] border-2 border-ink bg-white p-3 shadow-pop-lg">
         <div className="rounded-[28px] bg-sky-soft p-4">
-          <div className="flex items-start justify-between gap-2"><div><p className="text-[11px] font-bold uppercase tracking-wider text-muted">Case PT-1042 · Kalyan</p><p className="font-display text-lg font-extrabold">Chest screening</p></div><span className="rounded-full border-2 border-ink bg-white px-2.5 py-1 text-[11px] font-bold">81% · demo</span></div>
+          <div className="flex items-start justify-between gap-2 pt-2"><div><p className="text-[11px] font-bold uppercase tracking-wider text-muted">Case PT-1042 · Kalyan</p><p className="font-display text-lg font-extrabold">Chest screening</p></div><span className="rounded-full border-2 border-ink bg-white px-2.5 py-1 text-[11px] font-bold">81% · demo</span></div>
           <ul className="mt-3 space-y-2">
             {rows.map(([I, time, name, tone, st], i) => (
               <li key={name} style={{ animation: `bob 5s ease-in-out ${i * 0.4}s infinite` }} className={"flex items-center gap-3 rounded-2xl p-2.5 " + (st === "skipped · no MRI" ? "bg-white/70 opacity-70" : "bg-white shadow-clay-sm")}>
@@ -176,8 +171,8 @@ function HeroPreview() {
           <div className="mt-3 flex items-center gap-2 rounded-2xl border-2 border-ink bg-danger-soft p-2.5 text-xs font-bold text-danger"><span className="relative grid h-6 w-6 place-items-center"><span className="absolute inset-0 rounded-full bg-danger/40 animate-[pulse-ring_1.6s_ease-out_infinite]" /><WarningIcon size={16} weight="fill" className="relative" aria-hidden /></span>Please see a doctor today or tomorrow.</div>
         </div>
       </div>
-      <div className="absolute -bottom-24 -left-16 z-20 hidden lg:block"><Doctor /></div>
-      <p className="mt-3 text-center text-[11px] text-muted">Illustrative preview · simulated results · fictional data</p>
+      <div className="absolute bottom-2 -right-6 z-20 hidden sm:block"><Doctor /></div>
+      <p className="mt-3 max-w-[16rem] text-[11px] text-muted">Illustrative preview · simulated results · fictional data</p>
     </div>
   );
 }
