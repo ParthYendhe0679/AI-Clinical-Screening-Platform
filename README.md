@@ -6,6 +6,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4.0-38bdf8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
 [![Vitest](https://img.shields.io/badge/Vitest-5.0-6e9f18?style=flat&logo=vitest)](https://vitest.dev/)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=flat)](LICENSE)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FParthYendhe0679%2FAI-Clinical-Screening-Platform)
 
 > **A unified clinical intelligence and screening platform that ingests multimodal medical data (X-rays, ECGs, CTs, MRIs, lab reports, prescriptions, audio), orchestrates specialized lightweight AI models under strict memory budgets, grounds findings in patient history and medical guidelines via RAG, and generates traceable, dual-persona screening reports in vernacular Indian languages.**
 
