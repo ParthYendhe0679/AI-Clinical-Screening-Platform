@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+.env*
+
+# Excluded documentation per user request
+DESIGN.md
+allaboutourproject (3).md
+allaboutourproject*.md
+.claude
