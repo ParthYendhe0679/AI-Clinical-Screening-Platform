@@ -25,15 +25,15 @@ export default function Landing() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto grid max-w-6xl items-center gap-16 px-4 py-14 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:py-24">
+        <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-10 pt-6 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:pb-12 lg:pt-8">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-white px-3 py-1.5 text-sm font-semibold shadow-pop"><span className="rounded-full bg-sun px-2 py-0.5 text-[10px] font-extrabold">NEW</span>Multimodal AI screening, watch it pick models</span>
-            <h1 className="mt-6 text-[3rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-[4.1rem] lg:text-[4.6rem]">Your files.<br />One <span className="relative inline-block"><span className="relative z-10">clear</span><span className="absolute inset-x-0 bottom-1 z-0 h-4 -rotate-1 rounded-full bg-sun sm:h-6" aria-hidden /></span> report.<br />Not a diagnosis.</h1>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <h1 className="mt-4 text-[2.4rem] font-extrabold leading-[1.04] tracking-[-0.03em] sm:text-[3rem] lg:text-[3.4rem]">Your files.<br />One <span className="relative inline-block"><span className="relative z-10">clear</span><span className="absolute inset-x-0 bottom-1 z-0 h-4 -rotate-1 rounded-full bg-sun sm:h-6" aria-hidden /></span> report.<br />Not a diagnosis.</h1>
+            <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/register" className={LinkButtonClass("primary", "lg")}>Get Started <ArrowRightIcon size={18} weight="bold" aria-hidden /></Link>
               <Link href="/demo" className={LinkButtonClass("outline", "lg")}>Explore Demo</Link>
             </div>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-3">
+            <ul className="mt-6 grid gap-3 sm:grid-cols-3">
               {[[FilesIcon, "mint", "Many file types, one case"], [GraphIcon, "lavender", "Right models, in order"], [ShieldCheckIcon, "sun", "Screening, never diagnosis"]].map(([I, tone, t]) => (
                 <li key={t as string} className="flex items-center gap-2 text-sm font-semibold"><ArtTile icon={I as React.ElementType} tone={tone as "mint"} size={36} />{t as string}</li>
               ))}
@@ -148,22 +148,7 @@ function Feature({ icon, tone, title, body }: { icon: React.ElementType; tone: "
   return <Card className="flex gap-4 p-5"><ArtTile icon={icon} tone={tone} /><div><h3 className="text-base font-bold">{title}</h3><p className="mt-1 text-sm text-muted">{body}</p></div></Card>;
 }
 
-function Doctor() {
-  return (
-    <svg viewBox="0 0 160 190" className="h-44 w-36 animate-[bob_4s_ease-in-out_infinite]" role="img" aria-label="Animated cartoon doctor waving">
-      <ellipse cx="80" cy="182" rx="46" ry="6" fill="#1c1b2b" opacity=".12" />
-      <path d="M32 188c0-44 20-66 48-66s48 22 48 66z" fill="#fff" stroke="#1c1b2b" strokeWidth="3" />
-      <path d="M62 126l18 30 18-30" fill="#c4def8" stroke="#1c1b2b" strokeWidth="3" />
-      <path d="M60 130c-10 18-4 36 10 38" fill="none" stroke="#7b5cf0" strokeWidth="4" strokeLinecap="round" /><circle cx="72" cy="170" r="6" fill="#fad47f" stroke="#1c1b2b" strokeWidth="3" />
-      <circle cx="80" cy="76" r="36" fill="#f9cbc9" stroke="#1c1b2b" strokeWidth="3" />
-      <path d="M44 70c2-34 70-34 72 0-14-14-58-14-72 0z" fill="#1c1b2b" />
-      <g style={{ transformOrigin: "center", animation: "blink 5s infinite" }}><circle cx="67" cy="80" r="4" fill="#1c1b2b" /><circle cx="93" cy="80" r="4" fill="#1c1b2b" /></g>
-      <path d="M68 94q12 10 24 0" fill="none" stroke="#1c1b2b" strokeWidth="3" strokeLinecap="round" />
-      <rect x="60" y="30" width="40" height="14" rx="7" fill="#fff" stroke="#1c1b2b" strokeWidth="3" /><path d="M80 32v10M75 37h10" stroke="#c93535" strokeWidth="3" strokeLinecap="round" />
-      <g style={{ transformOrigin: "122px 140px", animation: "wave 1.6s ease-in-out infinite" }}><path d="M122 140c18-6 26-30 22-50" fill="none" stroke="#fff" strokeWidth="16" strokeLinecap="round" /><path d="M122 140c18-6 26-30 22-50" fill="none" stroke="#1c1b2b" strokeWidth="3" strokeLinecap="round" opacity=".15" /><circle cx="144" cy="86" r="10" fill="#f9cbc9" stroke="#1c1b2b" strokeWidth="3" /></g>
-    </svg>
-  );
-}
+import { Doctor } from "@/components/features/doctor-mascot";
 
 function HeroPreview() {
   const rows: [React.ElementType, string, string, "mint" | "pink" | "coral" | "sky", string][] = [
@@ -191,7 +176,7 @@ function HeroPreview() {
           <div className="mt-3 flex items-center gap-2 rounded-2xl border-2 border-ink bg-danger-soft p-2.5 text-xs font-bold text-danger"><span className="relative grid h-6 w-6 place-items-center"><span className="absolute inset-0 rounded-full bg-danger/40 animate-[pulse-ring_1.6s_ease-out_infinite]" /><WarningIcon size={16} weight="fill" className="relative" aria-hidden /></span>Please see a doctor today or tomorrow.</div>
         </div>
       </div>
-      <div className="absolute -bottom-10 -left-10 z-20 hidden sm:block"><Doctor /></div>
+      <div className="absolute -bottom-24 -left-16 z-20 hidden lg:block"><Doctor /></div>
       <p className="mt-3 text-center text-[11px] text-muted">Illustrative preview · simulated results · fictional data</p>
     </div>
   );

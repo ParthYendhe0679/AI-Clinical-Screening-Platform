@@ -3,20 +3,34 @@ import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { EyeIcon, EyeSlashIcon, ArrowLeftIcon, StethoscopeIcon, UserIcon, ShieldCheckIcon } from "@phosphor-icons/react";
+import { UploadSimpleIcon, GraphIcon, FileTextIcon } from "@phosphor-icons/react";
 import { useStore } from "@/store";
-import { Button, Card, Chip, Field, Input, PrototypeNotice, toast, Toaster } from "@/components/ui";
+import { ArtTile, Button, Card, Chip, Field, Input, PrototypeNotice, toast, Toaster } from "@/components/ui";
 import { Logo, useHydrated } from "./shell";
+import { Doctor } from "@/components/features/doctor-mascot";
+import { XraySample } from "@/components/features/docs";
 import { DEMO_DOCTOR_EMAIL, DEMO_PASSWORD, DEMO_PATIENT_EMAIL } from "@/data/seed";
 import type { Role } from "@/lib/types";
 
 export function AuthShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid min-h-dvh bg-dots lg:grid-cols-[1fr_1.05fr]">
-      <aside className="hidden border-r-2 border-ink bg-lavender p-10 lg:flex lg:flex-col lg:justify-between">
+      <aside className="hidden overflow-hidden border-r-2 border-ink bg-lavender p-10 lg:flex lg:flex-col">
         <Logo />
-        <div className="relative mx-auto my-10 w-full max-w-sm">
-          <Card variant="sticker" className="-rotate-2 p-5"><p className="font-display text-sm font-bold">One report, every source</p><p className="mt-1 text-sm text-muted">MODEL · RECORD · GUIDELINE · AI SUMMARY — click a tag to see where each line came from.</p></Card>
-          <Card variant="sticker" className="ml-10 mt-5 rotate-[5deg] p-5"><p className="font-display text-sm font-bold">Not a diagnosis</p><p className="mt-1 text-sm text-muted">Screening support that always sends you to a doctor.</p></Card>
+        <h2 className="mt-8 text-[2.6rem] font-extrabold leading-[1.05] tracking-[-0.03em]">Your files.<br />One <span className="relative inline-block"><span className="relative z-10">clear</span><span className="absolute inset-x-0 bottom-1 z-0 h-4 -rotate-1 rounded-full bg-sun" aria-hidden /></span> report.</h2>
+        <div className="mt-6 flex items-center justify-between gap-3 rounded-[28px] border-2 border-ink bg-white p-4 shadow-pop-lg">
+          {[[UploadSimpleIcon, "mint", "1. UPLOAD"], [GraphIcon, "lavender", "2. MODELS"], [FileTextIcon, "sun", "3. REPORT"]].map(([I, tone, l], k) => (
+            <React.Fragment key={l as string}>
+              <div className="text-center"><div className="mx-auto w-fit"><ArtTile icon={I as React.ElementType} tone={tone as "mint"} size={68} /></div><p className="mt-2 text-[11px] font-bold tracking-wider">{l as string}</p></div>
+              {k < 2 && <svg viewBox="0 0 60 20" className="h-5 w-12 shrink-0 text-ink" aria-hidden><path d="M2 14c14-14 34-14 52 0" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" /><path d="M48 8l8 6-10 2" fill="none" stroke="currentColor" strokeWidth="2" /></svg>}
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="relative mt-10 flex-1">
+          <div className="absolute left-0 top-0 w-[68%] -rotate-3 rounded-[28px] border-2 border-ink bg-white p-3 shadow-pop-lg"><XraySample highlight /><p className="mt-2 flex flex-wrap items-center gap-1 text-xs"><span className="rounded-full bg-sky-soft px-2 py-0.5 font-extrabold text-sky-deep">MODEL</span> possible infection · <b>81%</b> <em className="text-muted">demo</em></p></div>
+          <div className="absolute right-0 top-24 w-[46%] rotate-3 rounded-[24px] border-2 border-ink bg-white p-4 shadow-pop-lg"><p className="font-display text-sm font-bold">Not a diagnosis</p><p className="mt-1 text-xs text-muted">Screening support that always sends you to a doctor.</p></div>
+          <div className="absolute bottom-0 right-4"><Doctor className="h-40 w-32" /></div>
+          <span className="burst absolute left-[52%] top-2 grid h-20 w-20 rotate-12 place-items-center bg-sun font-display text-sm font-extrabold drop-shadow-[3px_3px_0_#1c1b2b]">ZAP!</span>
         </div>
         <p className="text-xs font-semibold text-ink-soft">Prototype · fictional demo data · simulated AI</p>
       </aside>
@@ -33,9 +47,10 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
 function RoleSelect({ role, onChange }: { role: Role; onChange: (r: Role) => void }) {
   return (
     <fieldset className="space-y-2"><legend className="text-sm font-semibold">I am a…</legend>
-      <div className="flex gap-2">
-        <Chip selected={role === "patient"} tone="mint" onClick={() => onChange("patient")}><UserIcon size={16} aria-hidden />Patient / caregiver</Chip>
-        <Chip selected={role === "doctor"} tone="sky" onClick={() => onChange("doctor")}><StethoscopeIcon size={16} aria-hidden />Doctor</Chip>
+      <div className="grid grid-cols-2 gap-1 rounded-full border-2 border-ink bg-white p-1 shadow-pop">
+        {([["patient", "Patient / caregiver", UserIcon, "bg-mint"], ["doctor", "Doctor", StethoscopeIcon, "bg-sky"]] as const).map(([r, l, I, bg]) => (
+          <button key={r} type="button" aria-pressed={role === r} onClick={() => onChange(r)} className={"flex h-11 items-center justify-center gap-2 rounded-full text-sm font-bold transition " + (role === r ? bg + " border-2 border-ink shadow-pop" : "text-ink-soft hover:text-ink")}><I size={16} weight={role === r ? "fill" : "regular"} aria-hidden />{l}</button>
+        ))}
       </div>
     </fieldset>
   );
@@ -73,11 +88,11 @@ export function LoginForm() {
   };
   return (
     <Card variant="sticker" className="p-6 sm:p-8">
-      <h1 className="text-2xl font-extrabold">Log in</h1>
+      <h1 className="text-3xl font-extrabold">Welcome back</h1>
       <p className="mt-1 text-sm text-muted">Demo accounts only — this is not production authentication.</p>
       <form onSubmit={submit} noValidate className="mt-5 space-y-4">
         <RoleSelect role={role} onChange={(r) => { setRole(r); setErrs({}); }} />
-        <Field label="Email" htmlFor="email" error={errs.email}><Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} aria-invalid={!!errs.email} aria-describedby={errs.email ? "email-err" : undefined} autoComplete="email" /></Field>
+        <Field label="Email" htmlFor="email" error={errs.email}><Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} aria-invalid={!!errs.email} aria-describedby={errs.email ? "email-err" : undefined} autoComplete="email" /></Field>
         <PasswordInput id="pw" label="Password" value={pw} onChange={setPw} error={errs.pw} />
         {errs.form && <p role="alert" className="rounded-xl bg-danger-soft p-3 text-sm font-semibold text-danger">{errs.form}</p>}
         <Button type="submit" size="lg" className="w-full" loading={busy}>Log in</Button>
